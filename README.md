@@ -15,7 +15,9 @@ A new hospital is being constructed to service the needs of a rapidly growing re
 - When an admitted patient’s primary doctor decides that the necessary course of treatment has ended, that patient is discharged from the hospital by an administrative employee.
 
 <strong> Here is the ER Model </strong>
-<img  src="/ER_model/1a_Entity Relation_drawIO.PNG" alt='my sample image'>	
+<p>
+  <img  src="/ER_model/1a_Entity Relation_drawIO.PNG" alt='my sample image'>	
+</p>
 <strong> Required Query Support </strong>
 <br> 
 Your database system must support the efficient processing of each of the following information requests.
