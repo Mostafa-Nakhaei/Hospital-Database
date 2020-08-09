@@ -1,5 +1,5 @@
 # Hospital-Database
-Hospital Database design
+This is a sample hospital database design witten in MySQL.
 
 ## Problem Description
 A new hospital is being constructed to service the needs of a rapidly growing retirement community. You have been contracted to develop the database system that will manage the primary care operation of the hospital, but not the financial operation.
