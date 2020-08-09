@@ -14,6 +14,9 @@ A new hospital is being constructed to service the needs of a rapidly growing re
 - Treatments are administered to patients by one or more employees who are either doctors, nurses, or technicians.
 - When an admitted patient’s primary doctor decides that the necessary course of treatment has ended, that patient is discharged from the hospital by an administrative employee.
 
+<strong> Here is the ER Model </strong>
+<img align="center" src="/ER_model/1a_Entity Relation_drawIO.PNG" alt='my sample image'>	
+*ER Diagram for Hospital*
 <strong> Required Query Support </strong>
 <br> 
 Your database system must support the efficient processing of each of the following information requests.
