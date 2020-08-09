@@ -16,7 +16,7 @@ A new hospital is being constructed to service the needs of a rapidly growing re
 
 <strong> Here is the ER Model </strong>
 <p>
-  <img  src="/ER_model/1a_Entity Relation_drawIO.PNG" alt='my sample image'>	
+  <img  align="center" src="/ER_model/1a_Entity Relation_drawIO.PNG" alt='my sample image'>	
 </p>
 <strong> Required Query Support </strong>
 <br> 
