@@ -1,0 +1,14 @@
+1)	Employee is superclass to Admin, Doctor, Nurse, Technicians
+
+2)	Patient is supperclass to inPatient and OutPatient
+
+3)	"Doctor" is superclass to AdminDoctor
+
+4)	"Doctor" can order any number of Treatments. Treatment has to be ordered by exactly one "Doctor"
+	Treatment is received by any number of Patient. A Patient can receive any number of Treatments.
+	Treatment can be administered by one or more Nurses, "Doctor" or Technicians.
+	Nurses, "Doctor" or Technicians can administer any number of Treatments.
+
+5)	Technician_Nurse_Doctors is subclass of technican, nurse, and doctors
+
+6)	AdmitDoctor can admit/discharge any number of Patients. A Patient can be admitted by any number of AdminDoctors

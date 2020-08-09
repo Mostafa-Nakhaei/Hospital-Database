@@ -1,0 +1,21 @@
+
+1) 	Technicans, Admin, Doctors, and Nurse are subset of employee set. 
+	Employee has not been considered as a separate table to remove redundancy but each empolyee type were given emp_ID.	
+	Also, the participation in the ER diagram is not total since hospital have many employee types (more than 4 mentioned types).
+
+2) 	For doctors with admiting privileges a subset of all doctors was considered. This was done by making a subset table for Doctors
+
+3)	For Patients, two subsets were considered one for inpatients and the other for outptients. 
+	These two tables are connceted through table "Patients". Each patient (either in patient or out patient) recives an patient ID.
+	emergency contact and insurance must be provided for each patient (NOT NULL constraint was enforced).
+
+4)	Patients are connected to addmited_Patient table throuhgh patient ID as foregin key. 
+	It is also connected to admin table by employee ID as forign key to keep of who discharge the patient.
+	The general purpose for this table is to keep track of admission and discharge time for each patient.
+
+
+5)	treatment was connceted to hospital_treatment_list to address the need for BCNF.
+
+
+6)	In patients, doctors with admiting privileges, and treatment were connected by a ternary relation. 
+	The main reason was to make sure patient's primary doctor is who perform treatments

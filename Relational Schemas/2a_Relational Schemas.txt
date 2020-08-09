@@ -1,0 +1,121 @@
+Patients(
+	patient_ID char(5),
+	PRIMARY KEY (patient_ID)
+);
+
+InPatients(
+	patient_ID char(5),
+	firstname varchar(20),
+	lastname varchar(20),
+	insurance varchar(20), 
+	emergency_contact varchar(20) NOT NULL, 
+        emergency_cell VARCHAR(12) NOT NULL,
+	PRIMARY KEY (patient_ID),
+	FOREIGN KEY (patient_ID) REFERENCES patients(patient_ID)
+);
+
+OutPatients( 
+	patient_ID char(5),
+	firstname varchar(20),
+	lastname varchar(20),
+	insurance varchar(20), 
+	emergency_contact varchar(20),
+        emergency_cell VARCHAR(12),
+	PRIMARY KEY (patient_ID),
+	FOREIGN KEY (patient_ID) REFERENCES patients(patient_ID)
+);
+
+Administrator(
+	emp_ID char(5),
+	lastname varchar(20), 
+	firstname varchar(20),
+	dob date,
+	PRIMARY KEY (emp_ID)
+);
+
+admitted_Patients( 
+	patient_ID char(5),
+	admit_Time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	discharge_Time DATETIME DEFAULT NULL, 			
+        emp_ID char(5),
+        type char(1), 					        
+	PRIMARY KEY (patient_ID, admit_Time), 			
+	FOREIGN KEY (patient_ID) REFERENCES patients(patient_ID),
+	FOREIGN KEY (emp_ID) REFERENCES Administrator(emp_ID)  
+);
+
+technician_nurse_doctor ( -- those who can adminstar treatment
+	ADMIN_id char(5),
+	PRIMARY KEY (ADMIN_id)
+);
+
+Hospital_Treatment_List(
+	Hospital_Treatment_List_ID char(5),
+        treatment_name varchar(20),
+	Treatment_medication varchar(20),
+	Treatment_procedure varchar(20),
+	PRIMARY KEY (Hospital_Treatment_List_ID)
+);
+
+Treatment(
+	treatment_ID char(5),
+        Hospital_Treatment_List_ID char(5),
+	ADMIN_id char(5) NOT NULL, -- every treatment should be administered by eaither Dr, Nurse, or Technican
+        time_stamp DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (treatment_ID),
+        FOREIGN KEY (ADMIN_id) REFERENCES technician_nurse_doctor(ADMIN_id),
+        FOREIGN KEY (Hospital_Treatment_List_ID) REFERENCES Hospital_Treatment_List(Hospital_Treatment_List_ID)
+);
+
+Doctor(
+	emp_ID char(5),
+	lastname varchar(20), 
+	firstname varchar(20),
+	dob date,
+	ADMIN_id char(5) REFERENCES technician_nurse_doctor(ADMIN_id),
+	PRIMARY KEY (emp_ID)
+);
+
+AdmitDoctor(
+	emp_ID char(5),
+	PRIMARY KEY (emp_ID),
+	FOREIGN KEY (emp_ID) REFERENCES Doctor(emp_ID)
+);
+
+Nurse(
+	emp_ID char(5),
+	lastname varchar(20), 
+	firstname varchar(20),
+	dob date,
+        ADMIN_id char(5) REFERENCES technician_nurse_doctor(ADMIN_id),
+	PRIMARY KEY (emp_ID)
+);
+
+Technician (
+	emp_ID char(5),
+	lastname varchar(20), 
+	firstname varchar(20),
+	dob date,
+        ADMIN_id char(5) REFERENCES technician_nurse_doctor(ADMIN_id),
+	PRIMARY KEY (emp_ID)
+);
+
+DTO_ternary( -- ternary relationship, out patients and doctor, treatments should be enforced
+	treatment_ID char(5),
+	emp_ID char(5) NOT NULL, 
+        patient_ID char(5),
+	PRIMARY KEY (treatment_ID, emp_ID, patient_ID),
+	FOREIGN KEY (emp_ID) REFERENCES Doctor(emp_ID),
+	FOREIGN KEY (patient_ID) REFERENCES outPatients(patient_ID),
+        FOREIGN KEY (treatment_ID) REFERENCES treatment(treatment_ID)
+);
+
+ATI_ternary( 
+	treatment_ID char(5),
+	emp_ID char(5) NOT NULL,
+        patient_ID char(5),
+	PRIMARY KEY (treatment_ID, emp_ID, patient_ID),
+	FOREIGN KEY (emp_ID) REFERENCES AdmitDoctor(emp_ID),
+	FOREIGN KEY (patient_ID) REFERENCES inpatients(patient_ID),
+        FOREIGN KEY (treatment_ID) REFERENCES treatment(treatment_ID)
+);
